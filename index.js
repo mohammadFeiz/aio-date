@@ -3,7 +3,7 @@ function AIODate(){
     isMatch(dateArray,matchers,calendarType = 'gregorian'){
       if(matchers === true){return true}
       if(matchers === false || !Array.isArray(matchers)){return false}
-      let d = dateCalculator();
+      let {isLess,isGreater,isEqual} = $$;
       for(let i = 0; i < matchers.length; i++){
         let matcher = matchers[i],type,targets;
         try{
@@ -12,43 +12,43 @@ function AIODate(){
           targets = a.slice(1,a.length);
         }
         catch{return false}
-        if(type === '<'){for(let i = 0; i < targets.length; i++){if(d.isLess(dateArray,targets[i])){return true}}}
-        else if(type === '>'){for(let i = 0; i < targets.length; i++){if(d.isGreater(dateArray,targets[i])){return true}}}
-        else if(type === '<='){for(let i = 0; i < targets.length; i++){if(d.isEqual(dateArray,targets[i])){return true}if(d.isLess(dateArray,targets[i])){return true}}}
-        else if(type === '>='){for(let i = 0; i < targets.length; i++){if(d.isEqual(dateArray,targets[i])){return true}if(d.isGreater(dateArray,targets[i])){return true}}}
-        else if(type === '='){for(let i = 0; i < targets.length; i++){if(d.isEqual(dateArray,targets[i])){return true}}}
-        else if(type === '!='){for(let i = 0; i < targets.length; i++){if(!d.isEqual(dateArray,targets[i])){return true}}}
+        if(type === '<'){for(let i = 0; i < targets.length; i++){if(isLess(dateArray,targets[i])){return true}}}
+        else if(type === '>'){for(let i = 0; i < targets.length; i++){if(isGreater(dateArray,targets[i])){return true}}}
+        else if(type === '<='){for(let i = 0; i < targets.length; i++){if(isEqual(dateArray,targets[i])){return true}if(isLess(dateArray,targets[i])){return true}}}
+        else if(type === '>='){for(let i = 0; i < targets.length; i++){if(isEqual(dateArray,targets[i])){return true}if(isGreater(dateArray,targets[i])){return true}}}
+        else if(type === '='){for(let i = 0; i < targets.length; i++){if(isEqual(dateArray,targets[i])){return true}}}
+        else if(type === '!='){for(let i = 0; i < targets.length; i++){if(!isEqual(dateArray,targets[i])){return true}}}
         else if(type === '<>'){
           if(targets[0] && targets[1]){
             let start,end;
-            if(d.isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
+            if(isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
             else {start = targets[1]; end = targets[0];}
-            if(d.isGreater(dateArray,start) && d.isLess(dateArray,end)){return true}
+            if(isGreater(dateArray,start) && isLess(dateArray,end)){return true}
           }
         }
         else if(type === '<=>'){
           if(targets[0] && targets[1]){
             let start,end;
-            if(d.isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
+            if(isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
             else {start = targets[1]; end = targets[0];}
-            if(d.isGreater(dateArray,start) && d.isLess(dateArray,end)){return true}
-            if(d.isEqual(dateArray,start) || d.isEqual(dateArray,end)){return true}  
+            if(isGreater(dateArray,start) && isLess(dateArray,end)){return true}
+            if(isEqual(dateArray,start) || isEqual(dateArray,end)){return true}  
           }
         }
         else if(type === '!<>'){
           if(targets[0] && targets[1]){
             let start,end;
-            if(d.isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
+            if(isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
             else {start = targets[1]; end = targets[0];}
-            if(!d.isGreater(dateArray,start) || !d.isLess(dateArray,end)){return true}
+            if(!isGreater(dateArray,start) || !isLess(dateArray,end)){return true}
           }
         }
         else if(type === '!<=>'){
           if(targets[0] && targets[1]){
             let start,end;
-            if(d.isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
+            if(isLess(targets[0],targets[1])){start = targets[0]; end = targets[1];}
             else {start = targets[1]; end = targets[0];}
-            if(!d.isEqual(dateArray,start) && !d.isEqual(dateArray,end) && (d.isLess(dateArray,start) || d.isGreater(dateArray,end))){return true}
+            if(!isEqual(dateArray,start) && !isEqual(dateArray,end) && (isLess(dateArray,start) || isGreater(dateArray,end))){return true}
           }
         }
         else if(type[0] === 'w'){
