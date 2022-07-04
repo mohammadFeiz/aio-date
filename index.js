@@ -52,14 +52,12 @@ function AIODate(){
           }
         }
         else if(type[0] === 'w'){
-          if(unit === 'day'){
-            let w = d.getWeekDay(dateArray,calendarType).index;
-            if(type === 'w='){for(let i = 0; i < targets.length; i++){if(w === targets[i]){return true}}}
-            else if(type === 'w!='){for(let i = 0; i < targets.length; i++){if(w !== targets[i]){return true}}}
-          } 
+          let w = $$.getWeekDay(dateArray,calendarType).index;
+          if(type === 'w='){for(let i = 0; i < targets.length; i++){if(w === targets[i]){return true}}}
+          else if(type === 'w!='){for(let i = 0; i < targets.length; i++){if(w !== targets[i]){return true}}} 
         }
-        return false
       }
+      return false
     },
     getSplitter(value){
       let splitter = '/';
