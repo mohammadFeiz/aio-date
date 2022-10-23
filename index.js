@@ -251,15 +251,12 @@ function AIODate(){
           date[j] = Number(str);
         }   
         date.push(dateObject.getHours());
-        if(unit === 'day'){date[3] = 0;}
-        if(unit === 'month'){date[2] = 1; date[3] = 0;}
+        date.push(dateObject.getMinutes());
         return date;
       },
       gregorian:(unit)=>{
         var date = new Date();
-        var result = [date.getFullYear(),date.getMonth() + 1,date.getDate(),date.getHours()]
-        if(unit === 'day'){date[3] = 0;}
-        if(unit === 'month'){date[2] = 1; date[3] = 0;}
+        var result = [date.getFullYear(),date.getMonth() + 1,date.getDate(),date.getHours(),date.getMinutes()]
         return result;
       }
     },
