@@ -214,6 +214,19 @@ function AIODate(){
         gregorian:['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
       }[calendarType]
     },
+    getDatesBetween(start,end,calendarType = 'gregorian'){
+      let type = Array.isArray(start)?'array':'string';
+      start = $$.convertToArray(start);
+      end = $$.convertToArray(end);
+      if(!$$.isGreater(end,start)){return []}
+      let nextDate = $$.getNextDay(start,calendarType);
+      let res = [];
+      while($$.isLess(nextDate,end)){
+        res.push(type === 'array'?nextDate:`${nextDate[0]}/${nextDate[1]}/${nextDate[2]}`);
+        nextDate = $$.getNextDay(nextDate,calendarType); 
+      }
+      return res
+    },
     getDaysBetween(start,end){
       if(end[0] - start[0] === 0){return Math.max($$.getDayIndexInYear(end) - $$.getDayIndexInYear(start) - 1,0);}
       var result = 0;
@@ -277,7 +290,8 @@ function AIODate(){
     getWeekDays:$$.getWeekDays,
     getMonths:$$.getMonths,
     getToday:$$.getToday,
-    isMatch:$$.isMatch
+    isMatch:$$.isMatch,
+    getDatesBetween:$$.getDatesBetween
   }
 }
 export default AIODate
