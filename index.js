@@ -274,6 +274,38 @@ function AIODate(){
       }
     },
     getToday(calendarType,unit = 'day'){return $$.GetToday[calendarType](unit)},
+    getPassedTime:(time)=>{
+      time = new Date(time).getTime();
+      let now = new Date().getTime();
+      let dif = now - time;
+      if(dif <= 0){return {days:0,hours:0,minutes:0,seconds:0,tenthseconds:0}}
+      let days = Math.floor(dif / (24 * 60 * 60 * 1000));
+      dif -= days * (24 * 60 * 60 * 1000);
+      let hours = Math.floor(dif / (60 * 60 * 1000));
+      dif -= hours * (60 * 60 * 1000);
+      let minutes = Math.floor(dif / (60 * 1000));
+      dif -= minutes * (60 * 1000);
+      let seconds = Math.floor(dif / (1000));
+      dif -= seconds * (1000);
+      let tenthseconds = Math.floor(dif / (100));
+      return {days,hours,minutes,seconds,tenthseconds}
+    },
+    getRemainingTime:(time)=>{
+      time = new Date(time).getTime();
+      let now = new Date().getTime();
+      let dif = time - now;
+      if(dif <= 0){return {days:0,hours:0,minutes:0,seconds:0,tenthseconds:0}}
+      let days = Math.floor(dif / (24 * 60 * 60 * 1000));
+      dif -= days * (24 * 60 * 60 * 1000);
+      let hours = Math.floor(dif / (60 * 60 * 1000));
+      dif -= hours * (60 * 60 * 1000);
+      let minutes = Math.floor(dif / (60 * 1000));
+      dif -= minutes * (60 * 1000);
+      let seconds = Math.floor(dif / (1000));
+      dif -= seconds * (1000);
+      let tenthseconds = Math.floor(dif / (100));
+      return {days,hours,minutes,seconds,tenthseconds}
+    }
   }
   return {
     gregorianToJalali:$$.gregorianToJalali,
@@ -291,7 +323,9 @@ function AIODate(){
     getMonths:$$.getMonths,
     getToday:$$.getToday,
     isMatch:$$.isMatch,
-    getDatesBetween:$$.getDatesBetween
+    getDatesBetween:$$.getDatesBetween,
+    getPassedTime:$$.getPassedTime,
+    getRemainingTime:$$.getRemainingTime
   }
 }
 export default AIODate
