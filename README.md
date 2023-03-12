@@ -23,7 +23,7 @@ let result = AIODate().toJalali({date:'2022/4/4',pattern:'{weekDay} {day} {month
 //result is 'دوشنبه 15 فروردین 1401'
 ```
 
-- #### date is required
+- #### date is required (string | array | number)
 - #### pattern is optional(if set pattern result will be string else result will be array)
 
 ### toGregorian
@@ -38,7 +38,7 @@ let result = AIODate().toGregorian({date:'1400/2/2',pattern:'{weekDay} {day} {mo
 //result is 'thursday 22 april 2021' 
 ```
 
-- #### date is required
+- #### date is required (string | array | number)
 - #### pattern is optional (if set pattern result will be string else result will be array)
 
 ### getToday
@@ -69,7 +69,7 @@ let {weekDay,index} = AIODate().getWeekDay({date:'2023/6/6'});
 //weekday is TUESDAY
 //index is 2
 ```
-- #### date is required
+- #### date is required (string | array | number)
 
 ### getDateByPattern
 ```javascript
@@ -97,3 +97,136 @@ let result = AIODate().getDateByPattern({
 - #### date is required (string | array | number)
 - #### pattern is required (string)
 - #### result is an string
+
+### convertToArray
+```javascript
+let result = AIODate().convertToArray({date:'2022/4/4'});
+//result is [2022,4,4]
+
+let result = AIODate().convertToArray({date:1432445566787});
+//result is [2015,5,24,10,2,46,8]
+```
+- #### date is required (string | number)
+- #### result is an array
+
+### getTime
+```javascript
+let result = AIODate().getTime({date:'2022/4/5'});
+//result is 1649100600000
+
+let result = AIODate().getTime({date:'2022/4/5/10/30'});
+//result is 1649138400000
+
+let result = AIODate().getTime({date:[2022,4,5,10,30]});
+//result is 1649138400000
+
+let result = AIODate().getTime({date:'2015-03-25T12:00:00Z'});
+//result is 1427268600000
+
+let result = AIODate().getTime({date:1755555656665});
+//result is 1755555656665
+
+let result = AIODate().getTime({date:'1402/3/3'});
+//result is 1684873800000
+```
+
+- #### date is required (string | number | array)
+- #### result is a miliseconds date(number)
+
+### compaire
+```javascript
+let result = AIODate().compaire({date:'2022/4/4',otherDate:'2022/7/10'});       
+//result is 'less'
+
+let result = AIODate().compaire({date:'2022/4/4',otherDate:'2022/2/10'})       
+//result is 'greater'
+                    
+let result = AIODate().compaire({date:'2022/4/4',otherDate:'2022/4/4'})       
+//result is 'equal'
+
+let result = AIODate().compaire({date:'2022/4/4',otherDate:1700000000000})       
+//result is 'less'
+
+let result = AIODate().compaire({date:'2022/4/4',otherDate:[2022,2,10]})       
+//result is 'greater'
+```
+- #### date is required (string | array | number)
+- #### otherDate is required (string | array | number)
+- #### result is 'less' or 'greater' or 'equal'
+
+### getMonthDaysLength
+```javascript
+let result = AIODate().getMonthDaysLength({date:'2022/4'});
+//result is 30
+
+let result = AIODate().getMonthDaysLength({date:'2022/7/5'});
+//result is 31
+
+let result = AIODate().getMonthDaysLength({date:'1400/12'});
+//result is 29
+
+let result = AIODate().getMonthDaysLength({date:'1399/12'});
+//result is 30
+```
+- #### date is required (string | array | number)
+- #### result is an number
+
+
+### getDelta
+##### this function get 2 dates as parameter and return deffrence of those by object
+```javascript
+let result = AIODate().getDelta({date:'2023/4/5',otherDate:new Date().getTime()});
+//result is 
+//{
+//  "day": 23,
+//  "hour": 3,
+//  "minute": 10,
+//  "second": 57,
+//  "tenthsecond": 9,
+//  "type": "remaining"
+//}
+
+let result = AIODate().getDelta({
+    date:'2023/4/5',
+    otherDate:new Date().getTime(),
+    pattern:'{day} : {hour} : {minute} : {second}'
+});
+//result is "23 : 3 : 10 : 57"
+
+let result = AIODate().getDelta({date:new Date().getTime() + 23000,otherDate:new Date().getTime()});
+//result is 
+//{
+//   "day": 0,
+//   "hour": 0,
+//   "minute": 0,
+//   "second": 23,
+//   "tenthsecond": 0,
+//   "type": "remaining"
+//}
+
+let result = AIODate().getDelta({date:new Date().getTime() - 23000,otherDate:new Date().getTime()});
+//result is 
+//{
+//   "day": 0,
+//   "hour": 0,
+//   "minute": 0,
+//   "second": 23,
+//   "tenthsecond": 0,
+//   "type": "passed"
+//}
+
+let res = AIODate().getDelta({date:'1401/12/12',otherDate:new Date().getTime()});
+//res is 
+//{
+//   "day": 9,
+//   "hour": 20,
+//   "minute": 49,
+//   "second": 2,
+//   "tenthsecond": 0,
+//   "type": "passed"
+//}
+```
+
+- #### date is required (string | array | number)
+- #### otherDate is required (string | array | number)
+- #### pattern is optional (if set pattern result will be an string)
