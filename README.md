@@ -39,4 +39,22 @@ let result = AIODate().toGregorian({date:'1400/2/2',pattern:'{weekDay} {day} {mo
 ```
 
 - #### date is required
-- #### pattern is optional(if set pattern result will be string else result will be array)
+- #### pattern is optional (if set pattern result will be string else result will be array)
+
+### getToday
+```javascript
+let res = AIODate().getToday({calendarType:'gregorian'});
+//res is [2023,3,12,20,26,57,9]
+
+let res = AIODate().getToday({calendarType:'gregorian',pattern:'{year}/{month}/{day} {hour}:{minute}'});
+//res is 2023/3/12 20:26
+
+let res = AIODate().getToday({calendarType:'jalali'});
+//res is [1401,12,21,20,26,57,9]
+
+let res = AIODate().getToday({calendarType:'jalali',pattern:'{year}/{month}/{day} {hour}:{minute}'});
+//res is 1401/12/21 20:26
+```
+
+- #### calendarType is required ('gregorian' | 'jalali')
+- #### pattern is optional (if set pattern result will be string else result will be array)
