@@ -10,7 +10,11 @@ npm install aio-date
 ```javascript
 import AIODate from 'aio-date';
 ```
-
+### date property of all function can be:
+- #### string ('2022/4/5/12/30/40/3') ('year/month/day/hour/minute/second/tenthsecond') (from year to any next value)
+- #### iso date ('2015-03-25T12:00:00Z')
+- #### array ([2022,4,5,12,30,40,3]) ([year,month,day,hour,minute,second,tenthsecond]) (from year to any next value)
+- #### miliseconds date 16765675665656
 ### toJalali
 ```javascript
 let result = AIODate().toJalali({date:'2022/4/4'});
