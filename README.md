@@ -260,3 +260,67 @@ let result = AIODate().getNextTime({
 - #### offset is required (number) (miliseconds)
 - #### pattern is optional (string)
 
+## getDatesBetween
+```javascript
+let result = AIODate().getdatesBetween({
+    date:'2022/4/4',
+    otherDate:'2022/7/10',
+    step:48 * 60 * 60 * 1000,
+    pattern:'{day} {monthString} {year}'
+});       
+//result is [
+//  "6 APRIL 2022",
+//  "8 APRIL 2022",
+//  "10 APRIL 2022",
+//  "12 APRIL 2022",
+//  "14 APRIL 2022",
+//  "16 APRIL 2022",
+//  "18 APRIL 2022",
+//  "20 APRIL 2022",
+//  "22 APRIL 2022",
+//  "24 APRIL 2022",
+//  "26 APRIL 2022",
+//  "28 APRIL 2022",
+//  "30 APRIL 2022",
+//  "2 MAY 2022",
+//  "4 MAY 2022",
+//  "6 MAY 2022",
+//  "8 MAY 2022",
+//  "10 MAY 2022",
+//  "12 MAY 2022",
+//  "14 MAY 2022",
+//  "16 MAY 2022",
+//  "18 MAY 2022",
+//  "20 MAY 2022",
+//  "22 MAY 2022",
+//  "24 MAY 2022",
+//  "26 MAY 2022",
+//  "28 MAY 2022",
+//  "30 MAY 2022",
+//  "1 JUNE 2022",
+//  "3 JUNE 2022",
+//  "5 JUNE 2022",
+//  "7 JUNE 2022",
+//  "9 JUNE 2022",
+//  "11 JUNE 2022",
+//  "13 JUNE 2022",
+//  "15 JUNE 2022",
+//  "17 JUNE 2022",
+//  "19 JUNE 2022",
+//  "21 JUNE 2022",
+//  "23 JUNE 2022",
+//  "25 JUNE 2022",
+//  "27 JUNE 2022",
+//  "29 JUNE 2022",
+//  "1 JULY 2022",
+//  "3 JULY 2022",
+//  "5 JULY 2022",
+//  "7 JULY 2022",
+//  "9 JULY 2022"
+//]
+                    
+```
+- #### date is required (string | array | number)
+- #### otherDate is required (string | array | number)
+- #### step is required (number) (miliseconds)
+
