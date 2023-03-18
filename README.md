@@ -43,6 +43,9 @@ let result = AIODate().toGregorian({date:'1400/2/2',pattern:'{year}/{month}/{day
 
 let result = AIODate().toGregorian({date:'1400/2/2',pattern:'{weekDay} {day} {monthString} {year}'});
 //result is 'thursday 22 april 2021' 
+
+let result = AIODate().toGregorian({date:'1400/2/2/22/30',pattern:'{weekDay} {day} {monthString} {year} {hour}:{minute}'});
+//result is "THURSDAY 22 APRIL 2021 22:30" 
 ```
 
 - #### date is required (string | array | number)
