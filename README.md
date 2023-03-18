@@ -15,7 +15,7 @@ import AIODate from 'aio-date';
 - #### iso date ('2015-03-25T12:00:00Z')
 - #### array ([2022,4,5,12,30,40,3]) ([year,month,day,hour,minute,second,tenthsecond]) (from year to any next value)
 - #### miliseconds date (16765675665656)
-### toJalali
+## toJalali
 ```javascript
 let result = AIODate().toJalali({date:'2022/4/4'});
 //result is [1401,1,15]
@@ -33,7 +33,7 @@ let result = AIODate().toJalali({date:'2022/4/4/22/30',pattern:'{weekDay} {day} 
 - #### date is required (string | array | number)
 - #### pattern is optional(if set pattern result will be string else result will be array)
 
-### toGregorian
+## toGregorian
 ```javascript
 let result = AIODate().toGregorian({date:'1400/2/2'});
 //result is [2021,4,22] 
@@ -51,7 +51,7 @@ let result = AIODate().toGregorian({date:'1400/2/2/22/30',pattern:'{weekDay} {da
 - #### date is required (string | array | number)
 - #### pattern is optional (if set pattern result will be string else result will be array)
 
-### getToday
+## getToday
 ```javascript
 let result = AIODate().getToday({calendarType:'gregorian'});
 //result is [2023,3,12,20,26,57,9]
@@ -69,7 +69,7 @@ let result = AIODate().getToday({calendarType:'jalali',pattern:'{year}/{month}/{
 - #### calendarType is required ('gregorian' | 'jalali')
 - #### pattern is optional (if set pattern result will be string else result will be array)
 
-### getWeekDay
+## getWeekDay
 ```javascript
 let {weekDay,index} = AIODate().getWeekDay({date:'1401/5/7'});
 //weekday is جمعه
@@ -81,7 +81,7 @@ let {weekDay,index} = AIODate().getWeekDay({date:'2023/6/6'});
 ```
 - #### date is required (string | array | number)
 
-### getDateByPattern
+## getDateByPattern
 ```javascript
 let result = AIODate().getDateByPattern({
     {date:'2023/4/5',pattern:'{year}/{month}/{day} {weekDay}'}
@@ -108,7 +108,7 @@ let result = AIODate().getDateByPattern({
 - #### pattern is required (string)
 - #### result is an string
 
-### convertToArray
+## convertToArray
 ```javascript
 let result = AIODate().convertToArray({date:'2022/4/4'});
 //result is [2022,4,4]
@@ -119,7 +119,7 @@ let result = AIODate().convertToArray({date:1432445566787});
 - #### date is required (string | number)
 - #### result is an array
 
-### getTime
+## getTime
 ```javascript
 let result = AIODate().getTime({date:'2022/4/5'});
 //result is 1649100600000
@@ -143,7 +143,7 @@ let result = AIODate().getTime({date:'1402/3/3'});
 - #### date is required (string | number | array)
 - #### result is a miliseconds date(number)
 
-### compaire
+## compaire
 ```javascript
 let result = AIODate().compaire({date:'2022/4/4',otherDate:'2022/7/10'});       
 //result is 'less'
@@ -164,7 +164,7 @@ let result = AIODate().compaire({date:'2022/4/4',otherDate:[2022,2,10]})
 - #### otherDate is required (string | array | number)
 - #### result is 'less' or 'greater' or 'equal'
 
-### getMonthDaysLength
+## getMonthDaysLength
 ```javascript
 let result = AIODate().getMonthDaysLength({date:'2022/4'});
 //result is 30
@@ -182,7 +182,7 @@ let result = AIODate().getMonthDaysLength({date:'1399/12'});
 - #### result is an number
 
 
-### getDelta
+## getDelta
 ##### this function get 2 dates as parameter and return deffrence of those by object
 ```javascript
 let result = AIODate().getDelta({date:'2023/4/5',otherDate:new Date().getTime()});
