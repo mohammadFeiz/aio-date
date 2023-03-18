@@ -323,4 +323,5 @@ let result = AIODate().getdatesBetween({
 - #### date is required (string | array | number)
 - #### otherDate is required (string | array | number)
 - #### step is required (number) (miliseconds)
+- #### pattern is optional (string)
 
