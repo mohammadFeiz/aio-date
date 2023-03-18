@@ -25,6 +25,9 @@ let result = AIODate().toJalali({date:'2022/4/4',pattern:'{year}/{month}/{day}'}
 
 let result = AIODate().toJalali({date:'2022/4/4',pattern:'{weekDay} {day} {monthString} {year}'});
 //result is 'دوشنبه 15 فروردین 1401'
+
+let result = AIODate().toJalali({date:'2022/4/4/22/30',pattern:'{weekDay} {day} {monthString} {year} ساعت {hour}:{minute}'});
+//result is "دوشنبه 15 فروردین 1401 ساعت 22:30"
 ```
 
 - #### date is required (string | array | number)
