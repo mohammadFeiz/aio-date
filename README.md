@@ -240,3 +240,16 @@ let res = AIODate().getDelta({date:'1401/12/12',otherDate:new Date().getTime()})
 - #### date is required (string | array | number)
 - #### otherDate is required (string | array | number)
 - #### pattern is optional (if set pattern result will be an string)
+
+## getNextTime
+```javascript
+let result = AIODate().getNextTime({date:'1400/2/2/22/30',offset:1.5 * 60 * 60 * 1000});
+//result [1400,2,3,0,0,0,0]
+
+let result = AIODate().getNextTime({date:'1400/2/2/22/30',offset:1.5 * 60 * 60 * 1000,pattern:'{year}/{month}/{day} {hour}:{minute}'});
+//result is "1400/2/3 0:0"
+```
+- #### date is required (string | array | number)
+- #### offset is required (number) (miliseconds)
+- #### pattern is optional (string)
+
