@@ -6,7 +6,7 @@ type I_dateObject = {
     minute?: number;
 };
 export type I_Date = string | number | Date | I_dateObject | number[];
-export declare class AIODate {
+export default class AIODate {
     isMatch: (date: I_Date, matchers: string[]) => boolean;
     convertToArray: (date: I_Date, jalali?: boolean) => number[];
     isLess: (date1: I_Date, date2: I_Date) => boolean;
