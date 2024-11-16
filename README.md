@@ -11,102 +11,89 @@ npm install aio-date
 import AIODate from 'aio-date';
 ```
 ### date property of all functions can be:
-- #### string ('2022/4/5/12/30/40/3') ('year/month/day/hour/minute/second/tenthsecond') (from year to any next value)
-- #### iso date ('2015-03-25T12:00:00Z')
-- #### array ([2022,4,5,12,30,40,3]) ([year,month,day,hour,minute,second,tenthsecond]) (from year to any next value)
-- #### miliseconds date (16765675665656)
-## toJalali
-```javascript
-let result = AIODate().toJalali({date:'2022/4/4'});
-//result is [1401,1,15]
+- #### string 
+    - `'2022/4/5'` (year is 2022 month is 4 day is 5)
+    - `'2022/4/5/12/30'` (year is 2022 month is 4 day is 5 hour is 12 minute is 30)
+- #### array
+    - `[2022,4,5]` (year is 2022 month is 4 day is 5)
+    - `[2022,4,5,12,30]` (year is 2022 month is 4 day is 5 hour is 12 minute is 30)
+- #### iso date
+    - `'2015-03-25T12:00:00Z'`
+- #### miliseconds date
+    - `16765675665656`
 
-let result = AIODate().toJalali({date:'2022/4/4',pattern:'{year}/{month}/{day}'});
-//result is '1401/1/15'
-
-let result = AIODate().toJalali({date:'2022/4/4',pattern:'{weekDay} {day} {monthString} {year}'});
-//result is 'دوشنبه 15 فروردین 1401'
-
-let result = AIODate().toJalali({date:'2022/4/4/22/30',pattern:'{weekDay} {day} {monthString} {year} ساعت {hour}:{minute}'});
-//result is "دوشنبه 15 فروردین 1401 ساعت 22:30"
+### for use AIODate class
+``` javascript
+import AIODate from 'aio-date';
+const aioDateInstance = new AIODate()
 ```
+## toJalali
+- type: (date:number | string | number[])=>number[]
 
-- #### date is required (string | array | number)
-- #### pattern is optional(if set pattern result will be string else result will be array)
+```javascript
+let result = aioDateInstance.toJalali('2022/4/4');
+//result is [1401,1,15]
+```
 
 ## toGregorian
-```javascript
-let result = AIODate().toGregorian({date:'1400/2/2'});
+- type: (date:number | string | number[])=>number[]
+
+``` javascript
+let result = aioDateInstance.toGregorian('1400/2/2');
 //result is [2021,4,22] 
-
-let result = AIODate().toGregorian({date:'1400/2/2',pattern:'{year}/{month}/{day}'});
-//result is '2021/4/22' 
-
-let result = AIODate().toGregorian({date:'1400/2/2',pattern:'{weekDay} {day} {monthString} {year}'});
-//result is 'thursday 22 april 2021' 
-
-let result = AIODate().toGregorian({date:'1400/2/2/22/30',pattern:'{weekDay} {day} {monthString} {year} {hour}:{minute}'});
-//result is "THURSDAY 22 APRIL 2021 22:30" 
 ```
-
-- #### date is required (string | array | number)
-- #### pattern is optional (if set pattern result will be string else result will be array)
 
 ## getToday
-```javascript
-let result = AIODate().getToday({calendarType:'gregorian'});
+- type: (jalali?:boolean)=>number[]
+
+``` javascript
+let gregorianToday = aioDateInstance.getToday();
 //result is [2023,3,12,20,26,57,9]
-
-let result = AIODate().getToday({calendarType:'gregorian',pattern:'{year}/{month}/{day} {hour}:{minute}'});
-//result is '2023/3/12 20:26'
-
-let result = AIODate().getToday({calendarType:'jalali'});
-//result is [1401,12,21,20,26,57,9]
-
-let result = AIODate().getToday({calendarType:'jalali',pattern:'{year}/{month}/{day} {hour}:{minute}'});
-//result is '1401/12/21 20:26'
 ```
 
-- #### calendarType is required ('gregorian' | 'jalali')
-- #### pattern is optional (if set pattern result will be string else result will be array)
+``` javascript
+let jalaliToday = AIODate().getToday(true);
+//result is [1401,12,21,20,26,57,9]
+```
 
 ## getWeekDay
-```javascript
-let {weekDay,index} = AIODate().getWeekDay({date:'1401/5/7'});
-//weekday is جمعه
-//index is 6
+- type: (date:string | number | number[])=>{weekDay:string,index:number}
 
-let {weekDay,index} = AIODate().getWeekDay({date:'2023/6/6'});
+##### Gregorian
+``` javascript
+let {weekDay,index} = aioDateInstance.getWeekDay('2023/6/6');
 //weekday is TUESDAY
 //index is 2
 ```
-- #### date is required (string | array | number)
+
+##### Jalali
+``` javascript
+let {weekDay,index} = aioDateInstance.getWeekDay('1401/5/7');
+//weekday is جمعه
+//index is 6
+```
 
 ## getDateByPattern
-```javascript
-let result = AIODate().getDateByPattern({
-    {date:'2023/4/5',pattern:'{year}/{month}/{day} {weekDay}'}
-});
+- type: (date: string | num,ber | number[], pattern: string) => string
+``` javascript
+let result = aioDateInstance.getDateByPattern('2023/4/5','{year}/{month}/{day} {weekDay}');
 //result is '2023/4/5 WEDNESDAY'
+```
 
-let result = AIODate().getDateByPattern({
-    date:'2023/4/5',pattern:'{day} {monthString} {year} {weekDay}'
-});
+``` javascript
+let result = aioDateInstance.getDateByPattern('2023/4/5','{day} {monthString} {year} {weekDay}');
 //result is '5 APRIL 2023 WEDNESDAY'
+```
 
-let result = AIODate().getDateByPattern({
-    date:'2023/4/5/10/30',pattern:'{year}/{month}/{day} {hour}:{minute}'
-});
-//result is '2023/4/5 10:30'
-
-let result = AIODate().getDateByPattern({
-    date:[2023,4,5,10,30],pattern:'{year}/{month}/{day} {hour}:{minute}'
-});
+``` javascript
+let result = aioDateInstance.getDateByPattern('2023/4/5/10/30','{year}/{month}/{day} {hour}:{minute}');
 //result is '2023/4/5 10:30'
 ```
 
-- #### date is required (string | array | number)
-- #### pattern is required (string)
-- #### result is an string
+``` javascript
+let result = aioDateInstance.getDateByPattern([2023,4,5,10,30],'{year}/{month}/{day} {hour}:{minute}');
+//result is '2023/4/5 10:30'
+```
 
 ## convertToArray
 ```javascript
