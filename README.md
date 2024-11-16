@@ -293,32 +293,24 @@ let res = aioDateInstance.getDelta('1401/12/12',new Date().getTime());
 ```
 
 ## getNextTime
+#### type:
 ```javascript
-let result = AIODate().getNextTime({
-    date:'1400/2/2/22/30',
-    offset:1.5 * 60 * 60 * 1000
-});
-//result [1400,2,3,0,0,0,0]
-
-let result = AIODate().getNextTime({
-    date:'1400/2/2/22/30',
-    offset:1.5 * 60 * 60 * 1000,
-    pattern:'{year}/{month}/{day} {hour}:{minute}'
-});
-//result is "1400/2/3 0:0"
+(date: string | number | number[], offset: number, jalali?: boolean) => number[]
 ```
-- #### date is required (string | array | number)
-- #### offset is required (number) (miliseconds)
-- #### pattern is optional (string)
+
+#### Example:
+```javascript
+let result = AIODate().getNextTime('1400/2/2/22/30',1.5 * 60 * 60 * 1000);
+```
 
 ## getDatesBetween
+#### type:
 ```javascript
-let result = AIODate().getdatesBetween({
-    date:'2022/4/4',
-    otherDate:'2022/7/10',
-    step:48 * 60 * 60 * 1000,
-    pattern:'{day} {monthString} {year}'
-});       
+(date: stirng | number | number[], otherDate: stirng | number | number[], step?: number) => any[]
+```
+#### Example:
+```javascript
+let result = AIODate().getdatesBetween('2022/4/4','2022/7/10',48 * 60 * 60 * 1000);       
 //result is [
 //  "6 APRIL 2022",
 //  "8 APRIL 2022",
